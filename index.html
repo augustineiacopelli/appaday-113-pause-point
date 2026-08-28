@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Pause Point &mdash; AppADay 113</title>
+<meta name="description" content="A Chrome extension that inserts a sixty second pause, with a reason prompt, before you can visit sites you are trying to avoid." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1c1a17;
+    --paper: #faf6ef;
+    --accent: #b5482c;
+    --muted: #7a7469;
+    --line: #e4ddd0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  header, footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  footer {
+    border-top: 1px solid var(--line);
+    border-bottom: none;
+    margin-top: 48px;
+  }
+  header a, footer a {
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .app-tag {
+    font-size: 0.8rem;
+    color: var(--muted);
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 20px;
+  }
+  h1 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: clamp(2rem, 6vw, 2.8rem);
+    margin: 0 0 12px;
+  }
+  .lede {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 32px;
+  }
+  .mockup {
+    background: var(--ink);
+    border-radius: 16px;
+    padding: 32px 20px;
+    margin-bottom: 40px;
+  }
+  .mockup-card {
+    background: var(--paper);
+    border-radius: 12px;
+    padding: 28px 20px;
+    text-align: center;
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  .mockup-domain {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .mockup-title {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.2rem;
+    margin: 0 0 18px;
+  }
+  .mockup-timer {
+    font-size: 2.6rem;
+    font-variant-numeric: tabular-nums;
+    margin-bottom: 18px;
+  }
+  .mockup-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  .mockup-buttons span {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    border: 1px solid var(--line);
+  }
+  .mockup-buttons .primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .mockup-buttons .secondary {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  h2 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-size: 1.4rem;
+    margin: 40px 0 12px;
+  }
+  ol, ul {
+    padding-left: 22px;
+  }
+  li {
+    margin-bottom: 10px;
+  }
+  code {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 0.9em;
+  }
+  .note {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    color: var(--muted);
+    margin: 24px 0;
+  }
+  .companion {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: var(--muted);
+  }
+  .download-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 22px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background: var(--accent);
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <a href="https://augustineiacopelli.github.io/appaday/">&larr; AppADay Portfolio</a>
+    <span class="app-tag">App 113</span>
+  </header>
+
+  <main>
+    <h1>Pause Point</h1>
+    <p class="lede">A sixty second pause, with a reason prompt, before you can visit the sites you are trying to avoid. The companion browser extension to <span class="companion">Temptation Ledger, App 112</span>.</p>
+
+    <div class="mockup" aria-hidden="true">
+      <div class="mockup-card">
+        <div class="mockup-domain">example.com</div>
+        <div class="mockup-title">Take sixty seconds first.</div>
+        <div class="mockup-timer">42</div>
+        <div class="mockup-buttons">
+          <span class="primary">Close this tab</span>
+          <span class="secondary">Continue anyway</span>
+        </div>
+      </div>
+    </div>
+
+    <h2>What it does</h2>
+    <p>Add any domain to your blocklist from the toolbar popup. From then on, visiting that domain redirects to a pause screen that asks what is pulling you there, counts down sixty seconds while your reason stays on screen, and only then lets you close the tab or continue. Every outcome, held or yielded, is logged and rolled into a running streak shown right in the popup.</p>
+
+    <h2>Install it</h2>
+    <a class="download-btn" href="pause-point-extension.zip" download>Download the extension (.zip)</a>
+    <ol>
+      <li>Download the extension ZIP above and unzip it locally.</li>
+      <li>Open <code>chrome://extensions</code> in Chrome or another Chromium browser.</li>
+      <li>Turn on <strong>Developer mode</strong> in the top right corner.</li>
+      <li>Click <strong>Load unpacked</strong> and select the unzipped folder.</li>
+      <li>Pin the Pause Point icon to the toolbar and add your first domain.</li>
+    </ol>
+
+    <div class="note">This is a sideloaded, developer-mode extension rather than a Chrome Web Store listing. All blocklist data, streak history, and outcomes stay in local browser storage on your machine and are never sent anywhere.</div>
+
+    <h2>How the pause works</h2>
+    <p>Blocked domains are enforced with Manifest V3's declarativeNetRequest rules, so the redirect happens before the page ever loads, with no network permissions beyond what is needed to rewrite that one navigation. Choosing to continue grants a fifteen minute pass for that domain, tracked with a chrome.alarms timer that reverts it automatically. Choosing to close extends your held streak by one.</p>
+  </main>
+
+  <footer>
+    <a href="https://augustineiacopelli.github.io/appaday/">AppADay Portfolio</a>
+    <span class="app-tag">Built by Augustine Iacopelli</span>
+  </footer>
+</body>
+</html>
