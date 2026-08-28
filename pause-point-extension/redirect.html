@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+<title>Pause Point</title>
+<style>
+  :root {
+    --ink: #1c1a17;
+    --paper: #faf6ef;
+    --accent: #b5482c;
+    --muted: #7a7469;
+    --line: #e4ddd0;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: Georgia, 'Times New Roman', serif;
+    padding: 24px;
+  }
+  .card {
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+  }
+  .domain {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 8px;
+    word-break: break-word;
+  }
+  h1 {
+    font-size: 1.6rem;
+    margin: 0 0 24px;
+  }
+  .timer {
+    font-size: 4rem;
+    font-variant-numeric: tabular-nums;
+    margin: 16px 0 24px;
+  }
+  .reason-wrap {
+    margin-bottom: 24px;
+    text-align: left;
+  }
+  label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  textarea {
+    width: 100%;
+    min-height: 72px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    resize: vertical;
+    background: #fff;
+  }
+  .reason-display {
+    font-style: italic;
+    color: var(--muted);
+    min-height: 24px;
+    margin-bottom: 24px;
+  }
+  .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  button {
+    min-height: 44px;
+    min-width: 120px;
+    padding: 0 20px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    border: 1px solid var(--line);
+  }
+  #closeBtn {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  #proceedBtn {
+    background: #fff;
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+  #proceedBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .backlink {
+    margin-top: 32px;
+    font-size: 0.8rem;
+  }
+  .backlink a {
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="domain" id="domainLabel">that site</div>
+    <h1>Take sixty seconds first.</h1>
+
+    <div id="promptStage">
+      <div class="reason-wrap">
+        <label for="reasonInput">What is pulling you there right now?</label>
+        <textarea id="reasonInput" placeholder="Write a sentence or two"></textarea>
+      </div>
+      <div class="actions">
+        <button type="button" id="startBtn">Start the pause</button>
+      </div>
+    </div>
+
+    <div id="pauseStage" style="display:none;">
+      <div class="timer" id="timerDisplay">60</div>
+      <div class="reason-display" id="reasonDisplay"></div>
+      <div class="actions">
+        <button type="button" id="closeBtn">Close this tab</button>
+        <button type="button" id="proceedBtn" disabled>Continue anyway</button>
+      </div>
+    </div>
+
+    <div class="backlink">
+      <a href="https://augustineiacopelli.github.io/appaday/" target="_blank" rel="noopener">AppADay portfolio</a>
+    </div>
+  </div>
+  <script src="redirect.js"></script>
+</body>
+</html>
